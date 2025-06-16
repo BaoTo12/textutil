@@ -27,8 +27,8 @@ class TextUtilityTest {
     }
 
     @Test
-    void testSuccessReverseStringWithNullString() {
-        Assertions.assertThat((String) null).isNull();
+    void testFailureReverseStringWithNullString() {
+        Assertions.assertThatThrownBy(() -> TextUtility.reverseString(null)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
@@ -47,12 +47,6 @@ class TextUtilityTest {
         Assertions.assertThat(TextUtility.countWords("Hello   world     Java")).isEqualTo(3);
     }
 
-    @Test
-    void testFailureCountWordsWithTwoWordsButExpectThree() {
-        // We know "foo bar" has 2 words, but we're asserting 3 → this will fail
-        Assertions.assertThat(TextUtility.countWords("foo bar"))
-                .as("Intentional failure: expecting 3 for a 2-word string")
-                .isEqualTo(3);
-    }
+
 
 }
