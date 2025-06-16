@@ -16,11 +16,11 @@ jobs:
     # checkout action downloads the complete repository source code to the runner environment
     - uses: actions/checkout@v4
     
-    - name: Set up JDK 21
+    - name: Set up JDK 24
     #  installs the JDK using the version specified
       uses: actions/setup-java@v4
       with:
-        java-version: '21'
+        java-version: '24'
         # Eclipse Temurin distribution provides enterprise-grade Java runtime environments
         distribution: 'temurin'
         cache: maven
@@ -32,5 +32,11 @@ jobs:
       with:
           name: get_jar    # Hyperlink để download build, app
           path: staging
-          
+    - name: Publish test results
+      uses: dorny/test-reporter@v1
+      if: always()  # This ensures results are published even if tests fail
+      with:
+        name: Test Results
+        path: target/surefire-reports/*.xml
+        reporter: java-junit     
 
