@@ -9,7 +9,7 @@ public class TextUtilityDDTTest {
 
     public static Object[][] initDataReverseString() {
         return new Object[][]{
-                {"hello", "olle"},
+                {"hello", "olleh"},
                 {"world", "dlrow"},
                 {"a", "a"},
                 {"", ""},

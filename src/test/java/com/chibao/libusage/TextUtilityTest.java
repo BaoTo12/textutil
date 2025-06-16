@@ -22,8 +22,8 @@ class TextUtilityTest {
     }
 
     @Test
-    void testSuccessReverseStringWithHelloWorld() {
-        Assertions.assertThat("hello world").isEqualTo(TextUtility.reverseString("dlrow olleh"));
+    void testFailureReverseStringWithHelloWorld() {
+        Assertions.assertThat("hello world").isEqualTo(TextUtility.reverseString("dlrow olleh bao-san"));
     }
 
     @Test
@@ -47,8 +47,4 @@ class TextUtilityTest {
         Assertions.assertThat(TextUtility.countWords("Hello   world     Java")).isEqualTo(3);
     }
 
-//    @Test
-//    void testSuccessCountWordsWithLeadingSpaces() {
-//        Assertions.assertThat(TextUtility.countWords("  Hello world Java  ")).isEqualTo(3);
-//    }
 }
