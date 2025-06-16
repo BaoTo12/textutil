@@ -23,7 +23,7 @@ class TextUtilityTest {
 
     @Test
     void testFailureReverseStringWithHelloWorld() {
-        Assertions.assertThat("hello world").isEqualTo(TextUtility.reverseString("dlrow olleh bao-san"));
+        Assertions.assertThat("hello world").isEqualTo(TextUtility.reverseString("dlrow olleh"));
     }
 
     @Test
@@ -45,6 +45,14 @@ class TextUtilityTest {
     @Test
     void testSuccessCountWordsWithHelloWorldJavaAndMultiSpacesBetween() {
         Assertions.assertThat(TextUtility.countWords("Hello   world     Java")).isEqualTo(3);
+    }
+
+    @Test
+    void testFailureCountWordsWithTwoWordsButExpectThree() {
+        // We know "foo bar" has 2 words, but we're asserting 3 → this will fail
+        Assertions.assertThat(TextUtility.countWords("foo bar"))
+                .as("Intentional failure: expecting 3 for a 2-word string")
+                .isEqualTo(3);
     }
 
 }
