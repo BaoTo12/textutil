@@ -39,5 +39,9 @@ jobs:
       with:
           name: get_jar    # Hyperlink để download build, app
           path: staging
-    # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
+    - name: Upload coverage reports to Codecov
+      uses: codecov/codecov-action@v5
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+   
 
