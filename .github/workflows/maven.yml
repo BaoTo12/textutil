@@ -23,11 +23,11 @@ jobs:
     # checkout action downloads the complete repository source code to the runner environment
     - uses: actions/checkout@v4
     
-    - name: Set up JDK 24
+    - name: Set up JDK 21
     #  installs the JDK using the version specified
       uses: actions/setup-java@v4
       with:
-        java-version: '24'
+        java-version: '21'
         # Eclipse Temurin distribution provides enterprise-grade Java runtime environments
         distribution: 'temurin'
         cache: maven
@@ -52,7 +52,7 @@ jobs:
     #  The JaCoCo parameters specify the coverage data file location for consistent report generation.
       run: |
         mvn clean verify \
-          -Dmaven.test.failure.ignore=false \ 
+          -Dmaven.test.failure.ignore=false \
           -Dsurefire.reportFormat=xml \
           -Dsurefire.useFile=false \
           -Djacoco.destFile=target/jacoco.exec \
