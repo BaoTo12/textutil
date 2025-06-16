@@ -1,10 +1,3 @@
-# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
-
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
 
 name: Java CI with Maven for TextUtil
 
@@ -34,49 +27,10 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
       
-    - name: Distribute jar-war file
-      run: mkdir staging && cp target/*.jar staging
-      
     - name: Make hyperlink to jar-war file    # Tạo hyperlink để download build 
       uses: actions/upload-artifact@v4
-      # if: always() condition ensures artifact upload occurs regardless of test success or failure status.
-      if: always()
       with:
           name: get_jar    # Hyperlink để download build, app
           path: staging
           
-    - name: Run tests with coverage
-    # -Dmaven.test.failure.ignore=false ensures test failures immediately terminate the build process.
-    # -Dsurefire.reportFormat=xml parameter generates XML-formatted test reports for external processing. 
-    # -Dsurefire.useFile=false parameter enables console output display during test execution
-    #  The JaCoCo parameters specify the coverage data file location for consistent report generation.
-      run: |
-        mvn clean verify \
-          -Dmaven.test.failure.ignore=false \
-          -Dsurefire.reportFormat=xml \
-          -Dsurefire.useFile=false \
-          -Djacoco.destFile=target/jacoco.exec \
-          -Djacoco.dataFile=target/jacoco.exec
-    - name: Generate test report
-    # surefire-report:report-only goal creates detailed test execution reports
-    # site -DgenerateReports=false command generates the Maven site structure
-      run: |
-        mvn surefire-report:report-only
-        mvn site -DgenerateReports=false
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v3
-      with:
-        # specifies the JaCoCo XML report location.
-        file: target/site/jacoco/jacoco.xml
-        flags: unittests
-        # fail_ci_if_error: false configuration prevents external service failures from terminating the workflow execution.
-        fail_ci_if_error: false
-    - name: Publish test results
-      uses: dorny/test-reporter@v1
-      if: success() || failure()
-      with:
-        name: Test Results Java 24 
-        path: target/surefire-reports/*.xml
-        reporter: java-junit
-   
 
