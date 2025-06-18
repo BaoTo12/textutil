@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 class TextUtilityTest {
     @Test
     void testSuccessReverseStringWithHello() {
-        Assertions.assertThat("hell").isEqualTo(TextUtility.reverseString("olleh"));
+        Assertions.assertThat("hello").isEqualTo(TextUtility.reverseString("olleh"));
     }
 
     @Test
