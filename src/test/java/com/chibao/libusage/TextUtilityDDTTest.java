@@ -42,19 +42,19 @@ public class TextUtilityDDTTest {
 
 
 
-//    @ParameterizedTest
-//    @NullSource
-//    @EmptySource
-//    @ValueSource(strings = { "   " })
-//    void testCountWordsNullOrBlankThrowsIllegalArgumentException(String input) {
-//        Assertions.assertThatThrownBy(() -> TextUtility.countWords(input))
-//                .isInstanceOf(IllegalArgumentException.class)
-//                .satisfies(ex -> {
-//                    if (input == null) {
-//                        Assertions.assertThat(ex).hasMessage("text must not be null");
-//                    } else {
-//                        Assertions.assertThat(ex).hasMessage("text must not be empty");
-//                    }
-//                });
-//    }
+    @ParameterizedTest
+    @NullSource
+    @EmptySource
+    @ValueSource(strings = { "   " })
+    void testCountWordsNullOrBlankThrowsIllegalArgumentException(String input) {
+        Assertions.assertThatThrownBy(() -> TextUtility.countWords(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .satisfies(ex -> {
+                    if (input == null) {
+                        Assertions.assertThat(ex).hasMessage("text must not be null");
+                    } else {
+                        Assertions.assertThat(ex).hasMessage("text must not be empty");
+                    }
+                });
+    }
 }

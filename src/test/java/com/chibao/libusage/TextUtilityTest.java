@@ -23,7 +23,7 @@ class TextUtilityTest {
 
     @Test
     void testFailureReverseStringWithHelloWorld() {
-        Assertions.assertThat("hello world").isEqualTo(TextUtility.reverseString("dlrow olleh"));
+        Assertions.assertThat("hello worg").isEqualTo(TextUtility.reverseString("dlrow olleh"));
     }
 
     @Test
