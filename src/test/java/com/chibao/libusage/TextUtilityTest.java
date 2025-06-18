@@ -33,7 +33,7 @@ class TextUtilityTest {
 
     @Test
     void testSuccessCountWordsWithHelloWorldJava() {
-        Assertions.assertThat(TextUtility.countWords("Hello world Java")).isEqualTo(3);
+        Assertions.assertThat(TextUtility.countWords("Hello world Jav")).isEqualTo(3);
     }
 
 
